@@ -144,6 +144,10 @@ p, li {
     margin: 0;
 }
 
+.main-header__menu a img {
+    margin: 0 auto;
+}
+
 .main-header__menu a {
     display: block;
     padding: 1em;
