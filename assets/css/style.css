@@ -353,6 +353,7 @@ p, li {
 
     .ourJourney__title {
         text-align: left;
+        margin-top: 0;
     }
 
     .aboutUs p {
