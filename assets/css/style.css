@@ -227,7 +227,7 @@ p, li {
 .ourJourney__title {
     color: var(--primary-clr);
     text-align: center;
-    margin-bottom: 2em;
+    margin-bottom: 1em;
 }
 
 .ourJourney__title em {
