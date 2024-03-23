@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gelasio:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Lora:ital,wght@0,400..700;1,400..700&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
 :root {
     --primary-clr: #76146E;
@@ -136,7 +136,14 @@ p, li {
    left: 0;
    width: 100%;
    z-index: 10;
-   display: none;
+}
+
+.close {
+    display: none;
+}
+
+.show {
+    display: block;
 }
 
 .main-header__menu ul {
@@ -182,9 +189,10 @@ p, li {
     font-weight: 700;
 }
 
-.banner__content p {
-    font-weight: 400;
+.banner__content h2 {
     text-decoration: underline;
+    font-weight: 600;
+    font-size: 1em;
 }
 
 .banner::after {
@@ -287,18 +295,57 @@ p, li {
     gap: 1.5em;
 }
 
-.services__gallery {
+.no-js .services__gallery {
     overflow: auto;
+}
+
+.no-js .services__gallery button {
+    display: none;
+}
+
+.row.dragging {
+    cursor: grab;
+}
+
+.services__gallery {
     width: 80%;
     margin: 2em auto;
+    position: relative;
+    cursor: pointer;
+}
+
+.services__gallery .row {
+    scroll-behavior: smooth;
+    overflow: hidden;
+}
+
+.sliderArrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2em;
+    height: 2em;
+    font-size: 1.2em;
+    border: 0;
+    cursor: pointer;
+    background-color: var(--dark-pink-clr);
+    color: var(--light-clr);
+}
+
+.slideshow__left {
+    left: -2em;
+}
+
+.slideshow__right {
+    left: 100%;
 }
 
 .services__gallery article {
     min-width: 100%;
     position: relative;
     margin-bottom: 1em;
-    cursor: pointer;
     overflow: hidden;
+    user-select: none;
 }
 
 .services__gallery article:hover img {
@@ -309,6 +356,10 @@ p, li {
    transition: .5s ease;
    display: block;
    width: 100%;
+}
+
+.hiddenButton {
+    display: none;
 }
 
 .services__gallery h3 {
@@ -430,6 +481,10 @@ p, li {
         width: 90%;
         margin-left: auto;
         margin-right: auto;
+    }
+
+    .services__gallery button {
+        display: none;
     }
 
     .services__gallery article {

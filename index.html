@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ReClar</title>
+    <link rel="stylesheet" href="assets/images/icons/style.css">
     <link rel="stylesheet" href="assets/css/normalize.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="shortcut icon" href="assets/images/logos/favicon.ico" type="image/x-icon">
+    <script src="assets/js/main.js"></script>
 </head>
 <body>
     <!--header-->
@@ -14,11 +16,11 @@
         <header class="maxWidth main-header">
             <div class="row">
                 <a href="index.html" class="main-header__logo" title="ReClar homepage"><img src="assets/images/logos/menu_logo.svg" alt="Logo"></a>
-                <button title="Open main menu" aria-label="Open main menu" aria-haspopup="menu" aria-expanded="false" class="main-header__toggle">
-                    <img src="assets/images/menu/hamburguer.svg" alt="">
+                <button title="Open main menu" aria-label="Open main menu" aria-haspopup="menu" aria-expanded="false" aria-controls="main-header__menu" class="main-header__toggle">
+                    <img src="assets/images/icons/hamburguer.svg" alt="">
                     <span class="hidden">Open main menu</span>
                 </button>
-                <nav class="main-header__menu" aria-label="Main menu">
+                <nav class="close main-header__menu" aria-label="Main menu" aria-labelledby="main-header__toggle">
                     <ul>
                         <li><a href="index.html">Home</a></li>
                         <li><a href="#">Serviços</a></li>
@@ -35,8 +37,8 @@
     <div class="wrapper--bg">
         <section class="maxWidth banner">
             <div class="banner__content">
-                <h1 class="banner__content__title"><b>ReClar Flores Selvagens</b><br>Events Organizations | Micro to Macro</h1>
-                <p>From legal assistance to your event's completion</p>
+                <h1 class="banner__content__title"><b>ReClar Flores Selvagens</b><br><span lang="en">Events Organizations | Micro to Macro</span></h1>
+                <h2>Desde assistência jurídica até à materialização dos seus eventos</h2>
             </div>
         </section>
     </div>
@@ -84,23 +86,27 @@
     <div class="wrapper--light">
         <section class="maxWidth services">
             <h2>Pronto para aproveitar o seu evento?</h2>
-            <div class="services__gallery row">
-                <article>
-                    <img src="assets/images/wedding.jpg" alt="">
-                    <h3>Casamentos</h3>
-                </article>
-                <article>
-                    <img src="assets/images/birthday.jpg" alt="">
-                    <h3>Aniversários</h3>
-                </article>
-                <article>
-                    <img src="assets/images/baptism.jpg" alt="">
-                    <h3>Batizados</h3>
-                </article>
-                <article>
-                    <img src="assets/images/babyShower.jpg" alt="">
-                    <h3>Chá do Bebé</h3>
-                </article>
+            <div class="services__gallery">
+                <div class="row">
+                    <article class="services__gallery__image">
+                        <img src="assets/images/wedding.jpg" alt="">
+                        <h3>Casamentos</h3>
+                    </article>
+                    <article class="services__gallery__image">
+                        <img src="assets/images/birthday.jpg" alt="">
+                        <h3>Aniversários</h3>
+                    </article>
+                    <article class="services__gallery__image">
+                        <img src="assets/images/baptism.jpg" alt="">
+                        <h3>Batizados</h3>
+                    </article>
+                    <article class="services__gallery__image">
+                        <img src="assets/images/babyShower.jpg" alt="">
+                        <h3>Chá do Bebé</h3>
+                    </article>
+                </div>
+                <button class="slideshow__left sliderArrow" id="left"><span class="icon-esquerda"></span></button>
+                <button class="slideshow__right sliderArrow" id=""><span class="icon-direita"></span></button>
             </div>
             <a href="servicos.html" class="btn">Explore os nossos serviços</a>
         </section>
