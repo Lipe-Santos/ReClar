@@ -1,4 +1,5 @@
 "use strict";
+
 window.onload = initializePage;
 
 let menuToggleButton, menuElement, carouselContainer, navigationArrows, carouselItems;
@@ -17,6 +18,8 @@ function initializePage() {
     navigationArrows.forEach(arrow => {
         arrow.onclick = handleChangeSlide;
     });
+
+    window.addEventListener("resize", handleResize);
 }
 
 function handleMenuToggle() {
@@ -43,14 +46,14 @@ function handleChangeSlide() {
 }
 
 function showNextSlide() {
-    if (translatedSlidesCount === getMaxSlidesToTranslate()) return;
+    if (translatedSlidesCount >= getMaxSlidesToTranslate()) return;
     const slideWidth = getCarouselItemWidth();
-    translateCarousel(slideWidth * -1);
     translatedSlidesCount++;
+    translateCarousel(slideWidth * -1);
 }
 
 function showPreviousSlide() {
-    if (currentSlideIndex === 0) return;
+    if (translatedSlidesCount <= 0) return;
     const slideWidth = getCarouselItemWidth();
     translateCarousel(slideWidth);
     translatedSlidesCount--;
@@ -71,9 +74,9 @@ function getItemWidth() {
 }
 
 function getMaxSlidesToTranslate() {
-    const itemWidth = getItemWidth();
     const containerWidth = getContainerWidth();
-    return (itemWidth / containerWidth).toFixed(2) * carouselItems.length;
+    const totalWidth = getItemWidth() * carouselItems.length;
+    return Math.floor((totalWidth - containerWidth) / getCarouselItemWidth());
 }
 
 function getContainerWidth() {
@@ -89,8 +92,10 @@ function resetCarouselPosition() {
     carouselContainer.style.transform = `translateX(0px)`;
 }
 
-window.addEventListener("resize", () => {
+function handleResize() {
     translatedSlidesCount = 0;
     currentSlideIndex = 0;
     resetCarouselPosition();
-});
+}
+
+window.addEventListener("resize", handleResize);
