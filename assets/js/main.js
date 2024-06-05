@@ -1,116 +1,96 @@
 "use strict";
-window.onload = boot;
+window.onload = initializePage;
 
-let menuButton, menu, slideshow, slideshowImages, sliderArrows, services;
-let isDragging = false, prevPageX, prevScrollLeft, galleryImageWidth, scrollWidth, positionDiff;
+let menuToggleButton, menuElement, carouselContainer, navigationArrows, carouselItems;
+let currentSlideIndex = 0;
+let translatedSlidesCount = 0;
 
-function boot() {
-    menuButton = document.querySelector(".main-header__toggle");
-    menu = document.querySelector(`.${menuButton.getAttribute("aria-controls")}`);
-    services = document.querySelector(".services");
-    slideshow = document.querySelector(".services__gallery .row");
-    slideshowImages = document.querySelectorAll(".services__gallery__image");
-    sliderArrows = document.querySelectorAll(".sliderArrow");
-    
+function initializePage() {
+    menuToggleButton = document.querySelector(".main-header__toggle");
+    menuElement = document.querySelector(`.${menuToggleButton.getAttribute("aria-controls")}`);
+    carouselContainer = document.querySelector(".services__gallery__container");
+    navigationArrows = document.querySelectorAll(".sliderArrow");
+    carouselItems = document.querySelectorAll(".services__gallery__item");
+
     document.documentElement.removeAttribute("class");
-    services.addEventListener("mousemove", getSlideshowWidths);
-    initializeSlider();
+    menuToggleButton.onclick = handleMenuToggle;
+    navigationArrows.forEach(arrow => {
+        arrow.onclick = handleChangeSlide;
+    });
 }
 
-function toggleMenu() {
-    let isOpen = menuButton.getAttribute("aria-expanded") === "true";
-    isOpen ? closeMenu() : openMenu();
+function handleMenuToggle() {
+    let isMenuOpen = menuToggleButton.getAttribute("aria-expanded") === "true";
+    isMenuOpen ? closeMenu() : openMenu();
 }
 
 function openMenu() {
-    menuButton.setAttribute("aria-expanded", "true");
-    menuButton.setAttribute("aria-label", `Close main menu`);
-    menu.classList.add("open");
-    menu.classList.remove("close");
+    menuToggleButton.setAttribute("aria-expanded", "true");
+    menuToggleButton.setAttribute("aria-label", `Close main menu`);
+    menuElement.classList.add("open");
+    menuElement.classList.remove("close");
 }
 
 function closeMenu() {
-    menuButton.setAttribute("aria-expanded", "false");
-    menuButton.setAttribute("aria-label", `Open main menu`);
-    menu.classList.add("close");
-    menu.classList.remove("open");
+    menuToggleButton.setAttribute("aria-expanded", "false");
+    menuToggleButton.setAttribute("aria-label", `Open main menu`);
+    menuElement.classList.add("close");
+    menuElement.classList.remove("open");
 }
 
-function getSlideshowWidths() {
-    const gap = parseFloat(getComputedStyle(slideshow).gap.replace(/[^0-9\.]+/g,''));
-    const firstImageWidth = slideshowImages[0].getBoundingClientRect().width;
-    scrollWidth = slideshow.scrollWidth - slideshow.clientWidth;
-    galleryImageWidth = firstImageWidth + gap;
+function handleChangeSlide() {
+    this.id === "left" ? showPreviousSlide() : showNextSlide();
 }
 
-function initializeSlider() {
-    dragSlider();
-    arrowsEventHandler();
+function showNextSlide() {
+    if (translatedSlidesCount === getMaxSlidesToTranslate()) return;
+    const slideWidth = getCarouselItemWidth();
+    translateCarousel(slideWidth * -1);
+    translatedSlidesCount++;
 }
 
-function dragSlider() {
-    menuButton.addEventListener("click", toggleMenu);
-    window.addEventListener("mouseup", dragStop);
-    window.addEventListener("mouseleave", dragStop);
-    window.addEventListener("touchend", dragStop);
-
-    slideshow.addEventListener("mousedown", dragStart);
-    slideshow.addEventListener("touchstart", dragStart);
-
-    slideshow.addEventListener("mousemove", dragging);
-    slideshow.addEventListener("touchmove", dragging);
-    preventImageDragging();
+function showPreviousSlide() {
+    if (currentSlideIndex === 0) return;
+    const slideWidth = getCarouselItemWidth();
+    translateCarousel(slideWidth);
+    translatedSlidesCount--;
 }
 
-function arrowsEventHandler() {
-    sliderArrows.forEach(arrow => {
-        arrow.addEventListener("click", () => {
-            slideshow.scrollLeft += arrow.id === "left" ? -galleryImageWidth : galleryImageWidth;
-            showOrHideNavigationArrows();
-            setTimeout(() => showOrHideNavigationArrows(), 200); // chamar depois de 200ms
-        });
-    });
+function getCarouselItemWidth() {
+    const itemWidth = getItemWidth();
+    const gapWidth = getContainerGapWidth();
+    return itemWidth + gapWidth;
 }
 
-function showOrHideNavigationArrows() {
-    //margem de segurança
-    const margin = 100;
-
-    if (slideshow.scrollLeft <= margin) {
-        sliderArrows[0].classList.add("hidden")
-    } else {
-        sliderArrows[0].classList.remove("hidden")
-    }
-
-    if (slideshow.scrollLeft >= (scrollWidth - margin)) {
-        sliderArrows[1].classList.add("hidden")
-    } else {
-        sliderArrows[1].classList.remove("hidden")   
-    }
+function getContainerGapWidth() {
+    return parseFloat(getComputedStyle(carouselContainer).gap);
 }
 
-function dragStart(e) {
-    prevPageX = e.pageX || e.touches[0].pageX;
-    prevScrollLeft = slideshow.scrollLeft;
-    isDragging = true;
+function getItemWidth() {
+    return carouselItems[0].getBoundingClientRect().width;
 }
 
-function dragStop() {
-    isDragging = false;
-    slideshow.classList.remove("dragging");
+function getMaxSlidesToTranslate() {
+    const itemWidth = getItemWidth();
+    const containerWidth = getContainerWidth();
+    return (itemWidth / containerWidth).toFixed(2) * carouselItems.length;
 }
 
-function dragging(e) {
-    e.preventDefault();
-    if (!isDragging) return;
-    slideshow.classList.add("dragging");
-    positionDiff = (e.pageX || e.touches[0].pageX) - prevPageX;
-    slideshow.scrollLeft = prevScrollLeft - positionDiff;
-    showOrHideNavigationArrows();
+function getContainerWidth() {
+    return carouselContainer.getBoundingClientRect().width;
 }
 
-function preventImageDragging() {
-    slideshowImages.forEach(image => {
-        image.ondragstart = () => false;
-    });
+function translateCarousel(value) {
+    currentSlideIndex += value;
+    carouselContainer.style.transform = `translateX(${currentSlideIndex}px)`;
 }
+
+function resetCarouselPosition() {
+    carouselContainer.style.transform = `translateX(0px)`;
+}
+
+window.addEventListener("resize", () => {
+    translatedSlidesCount = 0;
+    currentSlideIndex = 0;
+    resetCarouselPosition();
+});
