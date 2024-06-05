@@ -1,0 +1,178 @@
+.wrapper--bg {
+    background-image: url("../images/banner.jpg");
+}
+/*ourJourney*/
+.ourJourney .row {
+    flex-direction: column;
+    gap: 2em;
+}
+
+.ourJourney__title em {
+    font-style: normal;
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+.ourJourney ul {
+    padding: 0;
+    list-style-type: none;
+}
+
+.ourJourney li:nth-child(2n) {
+    margin: 1em 0;
+}
+
+.ourJourney li::before {
+    content: "•";
+    font-size: 10pt;
+    margin-right: .625em;
+}
+
+.ourJourney__img {
+    display: block;
+}
+
+.ourJourney .btn {
+    display: none;
+}
+/*cta*/
+.cta p {
+    color: var(--ligh-pink-clr);
+    font-size: 1.25em;
+    margin-top: 0;
+}
+/*services*/
+.services {
+    --button-width: 4.5rem;
+    text-align: center;
+}
+
+.services__gallery {
+    width: 80%;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 2.5em;
+}
+
+.services__gallery__container {
+    display: flex;
+    gap: 1em;
+    transition: .2s linear;
+}
+
+.services__gallery__item {
+    position: relative;
+    min-width: 100%;
+}
+
+.services__gallery__item, .services__gallery__item * {
+    user-select: none;
+}
+
+.services__gallery__item img {
+    display: block;
+    width: 100%;
+}
+
+.services__gallery__item h3 {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    font-family: inherit;
+    padding: 1rem;
+    margin: 0;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.sliderArrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    width: 4rem;
+    height: 4rem;
+    background-color: color-mix(in srgb, var(--dark-pink-clr), transparent 30%);
+    border: 0;
+    font-size: 1.125em;
+    color: var(--light-blue-clr);
+}
+
+.slideshow__left {
+    left: 0;
+}
+
+.slideshow__right {
+    right: 0;
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 768px) {
+    .ourJourney .row {
+        flex-direction: row;
+        gap: 2em;
+        align-items: center;
+    }
+
+    .ourJourney .row div {
+        order: 2;
+    }
+
+    .ourJourney__img {
+        max-width: 40%;
+    }
+
+    .ourJourney__title {
+        text-align: left;
+        margin-top: 0;
+    }
+
+    .aboutUs p {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 80ch;
+    }
+
+    .services__gallery__item {
+        min-width: 50%;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .ourJourney .btn {
+    margin-top: 1em;
+    display: inline-block;
+  }
+
+  .cta {
+    display: none;
+  }
+
+  .main-header__toggle {
+    display: none;
+  }
+
+  .main-header__menu {
+    display: block;
+    width: auto;
+    position: static;
+  }
+  
+  .main-header__menu ul {
+    display: flex;
+    align-items: center;
+  }
+
+  .main-header__menu a {
+    color: var(--dark-clr);
+    background-color: transparent;
+  }
+
+  .main-header__menu a:hover, .main-header__menu a:active {
+    color: var(--primary-clr);
+    background-color: transparent;
+  }
+}

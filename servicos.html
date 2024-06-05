@@ -4,21 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Serviços</title>
-    <link rel="stylesheet" href="assets/css/normalize.css">
-    <link rel="stylesheet" href="assets/css/style.css">
     <link rel="shortcut icon" href="assets/images/logos/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/normalize.css">
+    <link rel="stylesheet" href="assets/images/icons/style.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/services.css">
+    <script src="assets/js/main.js"></script>
 </head>
 <body>
-     <!--header-->
-     <div class="wrapper--light sticky">
+    <!--header-->
+    <div class="wrapper--light sticky">
         <header class="maxWidth main-header">
             <div class="row">
                 <a href="index.html" class="main-header__logo" title="ReClar homepage"><img src="assets/images/logos/menu_logo.svg" alt="Logo"></a>
-                <button title="Open main menu" aria-label="Open main menu" aria-haspopup="menu" aria-expanded="false" class="main-header__toggle">
-                    <img src="assets/images/menu/hamburguer.svg" alt="">
+                <button title="Open main menu" aria-label="Open main menu" aria-haspopup="menu" aria-expanded="false" aria-controls="main-header__menu" class="main-header__toggle">
+                    <img src="assets/images/icons/hamburguer.svg" alt="">
                     <span class="hidden">Open main menu</span>
                 </button>
-                <nav class="main-header__menu" aria-label="Main menu">
+                <nav class="close main-header__menu" aria-label="Main menu" aria-labelledby="main-header__toggle">
                     <ul>
                         <li><a href="index.html">Home</a></li>
                         <li><a href="servicos.html">Serviços</a></li>
@@ -31,20 +34,158 @@
             </div>
         </header>
     </div>
-      <!--banner-->
-      <div class="wrapper--bg">
+    <!--banner-->
+    <div class="wrapper--bg">
         <section class="maxWidth banner">
             <div class="banner__content">
                 <h1 class="banner__content__title">Os Nossos Serviços</h1>
-                <p>
-                    A ReClar visa facilitar os processos desgastantes que envolvem a organização de eventos, quer de pequenas quer de grandes dimensões, ou seja, as diferentes empresas, fornecedores, orçamentos, cronogramas apertados para a sua conclusão. 
-                </p>
             </div>
         </section>
     </div>
-     <!--footer-->
-     <footer class="wrapper--purple main-footer">
-        <p>All rights reserved ReClar&copy;2024</p>
+    <div class="wrapper--light">
+        <div class="light-content container-padding">
+            <p>
+                A ReClar visa  facilitar os processos desgastantes que envolvem a organização de eventos, quer de pequenas quer de grandes dimensões, ou seja, as diferentes empresas, fornecedores, orçamentos, cronogramas apertados para a sua conclusão.
+            </p>
+        </div>
+    </div>
+    <div class="wrapper--blue">
+        <section class="maxWidth ourJourney container-padding ourServices">
+            <header class="ourServices__header">
+                <h2>Serviços</h2>
+                <h3 class="subtitle">Acompanhamos e auxiliamos todos os seus afazeres até a concretização do seu evento</h3>
+            </header>
+
+            <div class="ourServices__services column">
+                <details>
+                    <summary>Assistência no procedimento legal</summary>
+                    <ul>
+                        <li>Damos a nossa assistência e acompanhamento durante o processo legal</li>
+                    </ul>
+                </details>
+                <details>
+                    <summary>Espaços</summary>
+                    <ul>
+                        <li>Os melhores espaços dentro do seu orçamento nos  distrito de Setúbal e Lisboa</li>
+                    </ul>
+                </details>
+                <details>
+                    <summary>Convites</summary>
+                    <ul>
+                        <li>Convites personalizados</li>
+                    </ul>
+                </details>
+                <details>
+                    <summary>Equipamentos</summary>
+                    <ul>
+                        <li>Móveis</li>
+                        <li>Atoalhados</li>
+                        <li>Loiças e Talheres</li>
+                    </ul>
+                </details>
+                <details>
+                    <summary>Decoração</summary>
+                    <ul>
+                        <li>Decoração Personalizada para o seu Evento</li>
+                    </ul>
+                </details>
+                <details>
+                    <summary>Catering</summary>
+                    <ul>
+                        <li>As melhores propostas culinárias</li>
+                        <li>Bolos Doces</li>
+                    </ul>
+                </details>
+                <details>
+                    <summary>Fotografia &#38; Video</summary>
+                    <ul>
+                        <li>Serviços de Fotografia e Edição</li>
+                        <li>Serviços de Videografia e montagem</li>
+                    </ul>
+                </details>
+                <details>
+                    <summary>Entretenimento</summary>
+                    <ul>
+                        <li>DJ</li>
+                        <li lang="en">360º Photo Booth</li>
+                        <li>Shows ao vivo</li>
+                        <li>Área Infantil</li>
+                    </ul>
+                </details>
+                <details>
+                    <summary>Roupas Formais</summary>
+                    <ul>
+                        <li>Vestidos personalizados</li>
+                    </ul>
+                </details>
+                <details>
+                    <summary>Arranjos de Florais</summary>
+                    <ul>
+                        <li>bouquets personalizados</li>
+                    </ul>
+                </details>
+                <details>
+                    <summary>Ourivesaria</summary>
+                    <ul>
+                      <li>Assistência com as suas Jóias</li>
+                    </ul>
+                  </details>
+                
+                  <details>
+                    <summary>Cabelo & Maquilhagem</summary>
+                    <ul>
+                      <li>Assistência com o seu Cabelo e Maquilhagem</li>
+                    </ul>
+                  </details>
+                
+                  <details>
+                    <summary>Esteticista</summary>
+                    <ul>
+                      <li>Assistência com os seus Tratamentos de Beleza</li>
+                    </ul>
+                  </details>
+                
+                  <details>
+                    <summary>Transportes</summary>
+                    <ul>
+                      <li>Assistência com todos os Transportes necessários</li>
+                    </ul>
+                  </details>
+                
+                  <details>
+                    <summary>Assistência aos Convidados</summary>
+                    <ul>
+                      <li>Assistência com Acomodação, Transportes e outros serviços</li>
+                    </ul>
+                  </details>
+                
+                  <details>
+                    <summary>Assistência com Crianças</summary>
+                    <ul>
+                      <li>Babás</li>
+                    </ul>
+                  </details>
+                
+                  <details>
+                    <summary>Viagens</summary>
+                    <ul>
+                      <li>Toda Assistência e diretriz no Planeamento das suas Viagens</li>
+                    </ul>
+                  </details>
+            </div>
+        </section>
+    </div>
+    <!--CTA-->
+    <div class="wrapper--light">
+        <div class="maxWidth cta container-padding">
+            <div class="row">
+                <p>Contacte-nos para descobrir outros serviços existentes</p>
+                <a href="#" class="btn">Contacte-nos</a>
+            </div>
+        </div>
+    </div>
+    <!--footer-->
+    <footer class="wrapper--purple main-footer">
+        <p lang="en">All rights reserved ReClar&copy;2024</p>
     </footer>
-</body>
 </html>

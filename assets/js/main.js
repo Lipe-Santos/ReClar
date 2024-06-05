@@ -1,12 +1,12 @@
 "use strict";
 
-window.onload = initializePage;
+window.onload = boot;
 
 let menuToggleButton, menuElement, carouselContainer, navigationArrows, carouselItems;
 let currentSlideIndex = 0;
 let translatedSlidesCount = 0;
 
-function initializePage() {
+function boot() {
     menuToggleButton = document.querySelector(".main-header__toggle");
     menuElement = document.querySelector(`.${menuToggleButton.getAttribute("aria-controls")}`);
     carouselContainer = document.querySelector(".services__gallery__container");
